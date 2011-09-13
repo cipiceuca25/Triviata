@@ -9,6 +9,7 @@ Quiz = {
      * that they may share an open HTTP connection with the server.
      */
     init: function(client) {
+				console.log("We are in the init...");
         var self = this;
         
         this._client = client;
