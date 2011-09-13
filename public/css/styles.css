@@ -1,0 +1,10 @@
+.box1 {
+width:300px;
+padding: 5px;
+border-width: thin;
+border-style: dotted dashed;
+border-color: #990000;
+background-color:#FFFFCC;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size:12px;
+}
