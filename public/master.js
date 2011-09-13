@@ -33,6 +33,7 @@ Master = {
             self._post.submit(function() {
                 self._client.publish('/quiz', {type: 'next'});
                 self._stream.empty();
+								delete firstResponder;
                 return false;
             });
         });
@@ -42,11 +43,15 @@ Master = {
         });
     },
   
+		var firstResponder;
     /**
      * Handler for received messages.
      */
     accept: function(message) {
         if (message.type === 'buzz') {
+						if (!firstResponder) {
+							
+						}
             this._stream.append('<li>'+html.escapeAttrib(message.user)+'</li>');
         }
     }
