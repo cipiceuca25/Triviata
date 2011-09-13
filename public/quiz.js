@@ -38,6 +38,7 @@ Quiz = {
             self.launch();
             return false;
         });
+				console.log("Inited...");
     },
   
     /**
