@@ -45,13 +45,19 @@ app.get('/master', oauthMiddleware, function(req, res) {
 
 app.post('/player', oauthMiddleware, function(req, res) {
 		console.log("In the app.post handler...");
-    rest.api(req).create('Player__c', req.body, function(data){
-        res.send(data);
-    }, function(data, response){
-        res.send(data, response.statusCode);
-    });
-});
-
+		rest.api(req).query("Select Id From Player__c Where Handle = " + req.body.handle, function(data) {
+			if (data.size == 0) {
+				rest.api(req).create('Player__c', req.body, function(data){
+		    	res.send(data);
+		    	}, function(data, response){
+		        res.send(data, response.statusCode);
+		    	});
+			}else {
+				res.send(data);
+			}
+		});
+	});
+    
 app.post('/incscore', oauthMiddleware, function(req, res) {
     var restClient = rest.api(req);
     restClient.query("SELECT Id, Score__c FROM Player__c WHERE Quiz__c = '"+req.body.Quiz__c+"' AND Name = '"+req.body.Name+"'", function(data) {
