@@ -31,6 +31,7 @@ Quiz = {
         
         // When the user enters handle/name, store them and start the app
         this._login.submit(function() {
+						console.log("submitted username: " + $('#handle').val());
             $('#error').empty();
             self._handle = $('#handle').val();
             self._name = $('#name').val();
