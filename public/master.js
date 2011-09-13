@@ -26,15 +26,15 @@ Master = {
     getQ: function(number) {
         var self = this;
     
-        return 'Q: '+self._questions[number].Question__r.Question__c+
+        return self._questions[number].Question__r.Question__c+
             '<br\><br\>';
     },
   
     getQnA: function(number) {
         var self = this;
     
-        return 'Q: '+self._questions[number].Question__r.Question__c+
-            '<br\>A: '+self._questions[number].Question__r.Answer__c;
+        return self._questions[number].Question__r.Question__c+
+            '<br\>Answer<br\>' + self._questions[number].Question__r.Answer__c;
     },
     
     nextQuestion: function() {
