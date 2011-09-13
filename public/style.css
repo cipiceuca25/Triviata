@@ -7,6 +7,11 @@ body {
 .question {
 	font-size: 24pt;
 }
+
+.questionLabel {
+	font-size 20pt;
+}
+
 .input {
   width:        352px;
 }
