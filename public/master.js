@@ -127,7 +127,6 @@ Master = {
         });
     },
   
-		var firstResponder;
     /**
      * Handler for received messages.
      */

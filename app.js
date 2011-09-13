@@ -44,6 +44,7 @@ app.get('/master', oauthMiddleware, function(req, res) {
 });
 
 app.post('/player', oauthMiddleware, function(req, res) {
+		console.log("In the app.post handler...");
     rest.api(req).create('Player__c', req.body, function(data){
         res.send(data);
     }, function(data, response){
