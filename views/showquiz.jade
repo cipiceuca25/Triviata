@@ -19,10 +19,12 @@ head
 			Master.init(client, $.getQueryParam("id"), JSON.parse(html.unescapeEntities('#{JSON.stringify(records)}')));
 		});
 body
-	p(class="box1")
-	#app
-	h3(id="prompt")
-		form(id="postMessage")
-			input(type="submit", id="next", value="Next!")
-			br
-			#players
+	#banner
+		#banner-content
+		#main-content
+			#app
+				h3(id="prompt")
+					form(id="postMessage")
+						input(type="submit", id="next", value="Next!")
+						br
+						#players
