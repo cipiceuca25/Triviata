@@ -48,6 +48,7 @@ Quiz = {
      * and a form is set up to send messages.
      */
     launch: function() {
+				console.log("In the launch function of Quiz.js...");
         var self = this;
     
         self._client.publish('/quiz', {
