@@ -20,12 +20,12 @@ Master = {
         self._post    = $('#postMessage');
         self._players = $('#players');
     		self._playing = $('#playing');
+				self._responders = [];
         self.launch();
     },
     
     getQ: function(number) {
         var self = this;
-    
         return self._questions[number].Question__r.Question__c+
             '<br\><br\>';
     },
@@ -43,6 +43,7 @@ Master = {
         // Reset clients, increment Q number, show next question etc
         self._number++;
         self._players.empty();
+				self._responders = [];
         if (self._number < self._questions.length) {
             self._client.publish('/quiz', {type: 'next'});
             $('#prompt').html(self.getQ(self._number));
@@ -134,8 +135,9 @@ Master = {
         var self = this;
         
         if (message.type === 'buzz') {
+						var now = new Date();
             self._players.append('<li data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-hover-c ui-btn-up-c"><input type="radio" name="player" value="'+
-                html.escapeAttrib(message.user)+'"/>'+html.escapeAttrib(message.user)+'</li>');
+                html.escapeAttrib(message.user)+'"/>' + html.escapeAttrib(message.user) + ' (' + now.getMinutes() + ':' + now.getSeconds() + ':' + now.getMilliseconds() + ')</li>');
         } else if (message.type === 'user') {
             // Send user record to db
             $.ajax({
