@@ -14,14 +14,14 @@ var fayeServer = new faye.NodeAdapter({mount: '/faye', timeout: 20}),
 var app = express.createServer(
     express.bodyParser(),
     express.cookieParser(),
-    express.session({ secret: process.env.CLIENT_SECRET }),
+    express.session({ secret: process.env.CLIENT_SECRET || "1088793090219252439"}),
     express.query());
     
 var oauthMiddleware = oauth.oauth({
-    clientId: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
-    loginServer: process.env.LOGIN_SERVER,
-    redirectUri: process.env.REDIRECT_URI
+    clientId: process.env.CLIENT_ID || "3MVG9QDx8IX8nP5RwKyTXo_vDe8bDN9A8i174wBFpLpu.wRNZ_OcBf0uVdIE4YQwhSOmyr7MqgVfibT.db47u",
+    clientSecret: process.env.CLIENT_SECRET || "1088793090219252439",
+    loginServer: process.env.LOGIN_SERVER || "https://login.salesforce.com",
+    redirectUri: process.env.REDIRECT_URI || "http://localhost:8000/master"
 });
     
 app.set('views', __dirname + '/views');
@@ -45,7 +45,8 @@ app.get('/master', oauthMiddleware, function(req, res) {
 
 app.post('/player', oauthMiddleware, function(req, res) {
 		console.log("In the app.post handler...");
-		rest.api(req).query("Select Id From Player__c Where Handle = " + req.body.handle, function(data) {
+		console.log("req body:\n" + JSON.stringify(req.body));
+		rest.api(req).query("Select Id, Name, Name__c From Player__c Where Name = '" + req.body.Name + "'", function(data) {
 			if (data.size == 0) {
 				rest.api(req).create('Player__c', req.body, function(data){
 		    	res.send(data);

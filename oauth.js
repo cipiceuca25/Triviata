@@ -11,6 +11,7 @@ exports.refresh = function refresh(options) {
         },
     }).on('complete', function(data, response) {
       if (response.statusCode == 200) {
+					
           console.log('refreshed: '+data.access_token);
           options.callback(data);
       }
@@ -65,6 +66,7 @@ exports.oauth = function oauth(options) {
             if ( req.session ) {
                 // We have nothing - redirect to the Authorization Server
                 req.session.oauth_state = req.url;
+							console.log("The client id is:\n" + clientId);
         	    var oauthURL = loginServer + "/services/oauth2/authorize?response_type=code&" +
         	        "client_id=" + clientId + "&redirect_uri=" + redirectUri + "&display=touch";
                 console.log('redirecting: '+oauthURL);

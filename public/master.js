@@ -19,7 +19,7 @@ Master = {
     
         self._post    = $('#postMessage');
         self._players = $('#players');
-    
+    		self._playing = $('#playing');
         self.launch();
     },
     
@@ -152,6 +152,7 @@ Master = {
                         type: 'userok',
                         ok: true
                     });
+										self._playing.append(message.handle + "<br/>");
                 },
                 error: function(jqXHR, textStatus) {
                     self._client.publish('/quiz', {
