@@ -22,16 +22,17 @@ head
 body
 	div(data-role="page")
 		#banner
-			#banner-content(style="font-size: 36pt") Force.com Trivia
+			#banner-content(data-role="header", data-theme="b", style="font-size: 36pt; background-color: #66aaff;") Force.com Trivia
 			#contestants(class="ui-grid-a")
-				#names(class="ui-block-a", style="width: 30%; text-align: left; margin-left: 40px") Contestants
-					#playing
+				#names(class="ui-block-a", style="width: 30%; text-align: left; margin-left: 40px") 
+					ul(id="playing", class="ui-list-view ui-listview-inset ui-corner-all ui-shadow", data-divider-theme="b", data-role="listview")
+						li(role="divider") Contestants
 				#main-content(class="ui-grid-b")
+					#qh(data-role="header", data-theme="c", style="font-size: 24pt") Question
 					#app(data-role="content")
-						p(class="questionLabel") Question
-							br
 							span(id="prompt", class="question")
+					#qf(data-role="footer", data-theme="c")
 						form(id="postMessage")
 							input(type="submit", id="next", value="Next!")
-							br
-							#players
+					ul(data-role="listview", id="players")
+						li(role="divider") Buzzed In

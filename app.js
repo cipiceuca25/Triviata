@@ -46,7 +46,7 @@ app.get('/master', oauthMiddleware, function(req, res) {
 app.post('/player', oauthMiddleware, function(req, res) {
 		console.log("In the app.post handler...");
 		console.log("req body:\n" + JSON.stringify(req.body));
-		rest.api(req).query("Select Id, Name, Name__c From Player__c Where Name = '" + req.body.Name + "'", function(data) {
+		rest.api(req).query("Select Id, Name, Name__c From Player__c Where Quiz__c = '" + req.body.Quiz__c + "' AND Name = '" + req.body.Name + "'", function(data) {
 			if (data.size == 0) {
 				rest.api(req).create('Player__c', req.body, function(data){
 		    	res.send(data);

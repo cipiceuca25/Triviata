@@ -134,8 +134,8 @@ Master = {
         var self = this;
         
         if (message.type === 'buzz') {
-            self._players.append('<input type="radio" name="player" value="'+
-                html.escapeAttrib(message.user)+'">'+html.escapeAttrib(message.user)+'<br/>');
+            self._players.append('<li data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-hover-c ui-btn-up-c"><input type="radio" name="player" value="'+
+                html.escapeAttrib(message.user)+'"/>'+html.escapeAttrib(message.user)+'</li>');
         } else if (message.type === 'user') {
             // Send user record to db
             $.ajax({
@@ -152,7 +152,7 @@ Master = {
                         type: 'userok',
                         ok: true
                     });
-										self._playing.append(message.handle + "<br/>");
+										self._playing.append('<li data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-hover-c ui-btn-up-c"><span style="padding-left: 15px">' + message.handle + "</span></li>");
                 },
                 error: function(jqXHR, textStatus) {
                     self._client.publish('/quiz', {
